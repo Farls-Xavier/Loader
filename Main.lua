@@ -1,4 +1,4 @@
-local MarketPlaceService = game:GetService("MarketplaceService")
+local MarketplaceService = game:GetService("MarketplaceService")
 
 local id = game.PlaceId
 
@@ -8,7 +8,7 @@ local Ids = {
 }
 
 function GameIsSupported()
-    warn("Game is supported("..MarketPlaceService:GetProductInfo(game.PlaceId).Name"). Loading script")
+    warn("Game is supported (" .. MarketplaceService:GetProductInfo(game.PlaceId).Name .. "). Loading script")
 end
 
 function GameIsNotSupported()
@@ -19,28 +19,25 @@ function GameIsNotSupported()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/UniversalScript/main/Main.lua"))()
 end
 
-local FoundID = false
-for _,v in pairs(Ids) do
-    if v == id then
-        FoundID = true
+local supported = false
+
+for name, placeId in pairs(Ids) do
+    if placeId == id then
+        supported = true
+        if placeId == Ids["❓ LUCKY BLOCKS Battlegrounds"]then
+            GameIsSupported()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/LuckyBlocks/main/Main.lua"))()
+        elseif placeId == Ids.Arsenal then
+            game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "Not done yet!",
+                Text = "Arsenal isn't quite yet done. Loading universal script",
+            })
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/UniversalScript/main/Main.lua"))() -- loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/Arsenal/main/Main.lua"))()
+        end
+        break 
     end
 end
 
-for _,v in pairs(Ids) do
-    if FoundID == false then
-        GameIsNotSupported()
-    else
-        if id == Ids["❓ LUCKY BLOCKS Battlegrounds"] then
-            GameIsSupported()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/LuckyBlocks/main/Main.lua"))()
-        elseif id == Ids.Arsenal then
-            game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "Not done yet!",
-                Text = "Arsenal isnt quite yet supported loading universal script",
-            })
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/UniversalScript/main/Main.lua"))()
-            --[[GameIsSupported()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/Arsenal/main/Main.lua"))()]]
-        end
-    end
+if not supported then
+    GameIsNotSupported()
 end
