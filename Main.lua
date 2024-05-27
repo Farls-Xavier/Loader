@@ -19,8 +19,15 @@ function GameIsNotSupported()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/UniversalScript/main/Main.lua"))()
 end
 
+local FoundID = false
 for _,v in pairs(Ids) do
-    if v ~= id then
+    if v == id then
+        FoundID = true
+    end
+end
+
+for _,v in pairs(Ids) do
+    if FoundID == false then
         GameIsNotSupported()
     else
         if id == Ids["❓ LUCKY BLOCKS Battlegrounds"] then
