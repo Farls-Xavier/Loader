@@ -4,10 +4,11 @@ local id = game.PlaceId
 
 local Ids = {
     ["❓ LUCKY BLOCKS Battlegrounds"] = 662417684,
+    ["Arsenal"] = 286090429
 }
 
 function GameIsSupported()
-    warn("Game is supported("..MarketPlaceService:GetProductInfo(game.PlaceId)["Name"]"). Loading script")
+    warn("Game is supported("..MarketPlaceService:GetProductInfo(game.PlaceId).Name"). Loading script")
 end
 
 function GameIsNotSupported()
@@ -22,11 +23,17 @@ for _,v in pairs(Ids) do
     if v ~= id then
         GameIsNotSupported()
     else
-        if id == 662417684 then
+        if id == Ids["❓ LUCKY BLOCKS Battlegrounds"] then
             GameIsSupported()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/LuckyBlocks/main/Main.lua"))()
+        elseif id == Ids.Arsenal then
+            game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "Not done yet!",
+                Text = "Arsenal isnt quite yet supported loading universal script",
+            })
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/UniversalScript/main/Main.lua"))()
+            --[[GameIsSupported()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/Arsenal/main/Main.lua"))()]]
         end
     end
 end
-
---loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/LuckyBlocks/main/Main.lua"))()
