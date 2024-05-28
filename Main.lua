@@ -28,11 +28,8 @@ for name, placeId in pairs(Ids) do
             GameIsSupported()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/LuckyBlocks/main/Main.lua"))()
         elseif placeId == Ids.Arsenal then
-            game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "Not done yet!",
-                Text = "Arsenal isn't quite yet done. Loading universal script",
-            })
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/UniversalScript/main/Main.lua"))() -- loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/Arsenal/main/Main.lua"))()
+            GameIsSupported()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Farls-Xavier/Arsenal/main/Main.lua"))()
         end
         break 
     end
